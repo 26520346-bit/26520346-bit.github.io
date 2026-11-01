@@ -1,141 +1,829 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio của Tôi</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Trần Đức | Web/App Developer Portfolio (dustintran.me)</title>
+    <meta name="title" content="Trần Đức | Web/App Developer Portfolio">
+    <meta name="description" content="Portfolio chính thức của Trần Đức (Dustin Tran) - Sinh viên năm nhất HCMUIT, cựu học sinh Chuyên Tin THPT Chuyên Thoại Ngọc Hầu. Web/App Developer sáng lập Đồ Án Web học tiếng Nhật Nihongo NAKAMA.">
+    <meta name="keywords" content="Trần Đức, Dustin Tran, dustintran.me, Web/App Developer, HCMUIT, Đại học Công nghệ Thông tin, THPT Chuyên Thoại Ngọc Hầu, Chuyên Tin, Nihongo NAKAMA, Web học tiếng Nhật, Portfolio">
+    <meta name="author" content="Trần Đức">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dustintran.me/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dustintran.me/">
+    <meta property="og:title" content="Trần Đức | Web/App Developer Portfolio">
+    <meta property="og:description" content="Khám phá hành trình từ Chuyên Tin THPT Chuyên Thoại Ngọc Hầu đến HCMUIT và Đồ Án Web học tiếng Nhật Nihongo NAKAMA của Trần Đức (17/06/2008).">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:site_name" content="Trần Đức Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dustintran.me/">
+    <meta name="twitter:title" content="Trần Đức | Web/App Developer Portfolio">
+    <meta name="twitter:description" content="Sinh viên năm nhất HCMUIT • Cựu Chuyên Tin THPT Chuyên Thoại Ngọc Hầu • Tác giả Đồ Án Web học tiếng Nhật Nihongo NAKAMA.">
+
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230f172a'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='28' fill='url(%23g)'%3ET%C4%90%3C/text%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Inter, Plus Jakarta Sans, JetBrains Mono, Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Trần Đức",
+      "alternateName": "Dustin Tran",
+      "birthDate": "2008-06-17",
+      "jobTitle": "Web/App Developer",
+      "email": "mailto:tranduc6525@gmail.com",
+      "url": "https://dustintran.me",
+      "sameAs": [
+        "https://github.com/26520346-bit"
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Trường Đại học Công nghệ Thông tin - ĐHQG TP.HCM (HCMUIT)"
+        },
+        {
+          "@type": "HighSchool",
+          "name": "Trường THPT Chuyên Thoại Ngọc Hầu"
         }
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.6;
-        }
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-bottom: 1px solid #334155;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            color: #94a3b8;
-        }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        section {
-            margin-bottom: 40px;
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-        }
-        section h2 {
-            color: #38bdf8;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 8px;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .project-card {
-            background: #0f172a;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-        }
-        .project-card h3 {
-            color: #f8fafc;
-            margin-bottom: 8px;
-        }
-        .project-card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            color: #cbd5e1;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #0f172a;
-            color: #64748b;
-            border-top: 1px solid #334155;
-            font-size: 0.9rem;
-        }
-        a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-    </style>
+      ]
+    }
+    </script>
 </head>
 <body>
+    <!-- 1. Background Effects -->
+    <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
 
-    <header>
-        <h1>Nguyễn Văn A</h1>
-        <p>Web Developer & UI/UX Designer</p>
+    <!-- 2. Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-logo" aria-label="Trần Đức Portfolio - Trang chủ">
+                <span class="logo-bracket">&lt;</span>Trần Đức<span class="logo-dot">.dev</span><span class="logo-bracket">/&gt;</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Điều hướng chính">
+                <a href="#home" class="nav-link active">Trang chủ</a>
+                <a href="#about" class="nav-link">Giới thiệu</a>
+                <a href="#education" class="nav-link">Học vấn</a>
+                <a href="#skills" class="nav-link">Kỹ năng</a>
+                <a href="#projects" class="nav-link">Dự án</a>
+                <a href="#contact" class="nav-link">Liên hệ</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Đổi giao diện Sáng/Tối">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <a href="#contact" class="btn btn-sm btn-primary">Kết nối ngay</a>
+                <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <section>
-            <h2>Giới thiệu</h2>
-            <p>Xin chào! Tôi là một lập trình viên web đam mê tạo ra các giao diện người dùng thân thiện, hiện đại và tối ưu hiệu suất. Tôi luôn sẵn sàng học hỏi các công nghệ mới để giải quyết bài toán thực tế.</p>
-        </section>
+    <main>
+        <!-- 3. Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="container hero-grid">
+                <!-- Left Column: Hero Content -->
+                <div class="hero-content reveal">
+                    <div class="status-badge">
+                        <span class="status-dot"></span> Sẵn sàng cho các dự án Web/App &amp; cơ hội hợp tác
+                    </div>
 
-        <section>
-            <h2>Kỹ năng</h2>
-            <ul>
-                <li>HTML5, CSS3, JavaScript (ES6+)</li>
-                <li>Responsive Design, Flexbox, Grid</li>
-                <li>ReactJS, Git & GitHub</li>
-            </ul>
-        </section>
+                    <h1 class="hero-title">
+                        Xin chào, mình là <span class="gradient-text">Trần Đức</span>
+                    </h1>
 
-        <section>
-            <h2>Dự án tiêu biểu</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Dự án 1: Landing Page</h3>
-                    <p>Thiết kế và code giao diện trang chủ giới thiệu sản phẩm bằng HTML/CSS thuần.</p>
+                    <div class="hero-role">
+                        <span class="role-prefix">Mình là </span><span id="typewriter-text" class="typewriter-text">Web/App Developer</span><span class="typewriter-cursor">|</span>
+                    </div>
+
+                    <p class="hero-description">
+                        Sinh ngày <strong>17/06/2008</strong>, mình hiện là sinh viên năm nhất tại <strong>Trường Đại học Công nghệ Thông tin - ĐHQG TP.HCM (HCMUIT)</strong> và là cựu học sinh <strong>Chuyên Tin tại Trường THPT Chuyên Thoại Ngọc Hầu</strong>. Với nền tảng tư duy thuật toán vững chắc cùng niềm đam mê kiến tạo sản phẩm số, mình tập trung thiết kế và phát triển các ứng dụng Web &amp; Mobile hiện đại, hiệu năng cao — nổi bật là <strong>Đồ Án Web học tiếng Nhật Nihongo NAKAMA</strong>.
+                    </p>
+
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">Khám phá Nihongo NAKAMA 🚀</a>
+                        <a href="#contact" class="btn btn-secondary">Liên hệ hợp tác ✉️</a>
+                        <button type="button" class="btn btn-outline" id="hero-copy-email" data-email="tranduc6525@gmail.com">
+                            📋 tranduc6525@gmail.com
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">2008</span>
+                            <span class="stat-label">Năm sinh (17/06)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">HCMUIT</span>
+                            <span class="stat-label">Sinh viên Năm 1</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Chuyên Tin</span>
+                            <span class="stat-label">THPT Chuyên Thoại Ngọc Hầu</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>Dự án 2: Ứng dụng To-Do List</h3>
-                    <p>Ứng dụng quản lý công việc hàng ngày sử dụng JavaScript tương tác DOM.</p>
+
+                <!-- Right Column: Hero Visual / Code Window -->
+                <div class="hero-visual reveal">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="window-dots">
+                                <span class="dot dot-red"></span>
+                                <span class="dot dot-yellow"></span>
+                                <span class="dot dot-green"></span>
+                            </div>
+                            <span class="window-title">tran_duc_profile.ts</span>
+                        </div>
+                        <pre class="window-body"><code><span class="code-comment">// Hồ sơ nhà phát triển - dustintran.me</span>
+<span class="code-keyword">interface</span> <span class="code-var">DeveloperProfile</span> {
+  <span class="code-prop">name</span>: <span class="code-keyword">string</span>;
+  <span class="code-prop">birthday</span>: <span class="code-keyword">string</span>;
+  <span class="code-prop">role</span>: <span class="code-keyword">string</span>;
+  <span class="code-prop">university</span>: <span class="code-keyword">string</span>;
+  <span class="code-prop">highSchool</span>: <span class="code-keyword">string</span>;
+  <span class="code-prop">featuredProject</span>: <span class="code-keyword">string</span>;
+  <span class="code-prop">email</span>: <span class="code-keyword">string</span>;
+}
+
+<span class="code-keyword">const</span> <span class="code-var">tranDuc</span>: <span class="code-var">DeveloperProfile</span> = {
+  <span class="code-prop">name</span>: <span class="code-string">"Trần Đức"</span>,
+  <span class="code-prop">birthday</span>: <span class="code-string">"17/06/2008"</span>,
+  <span class="code-prop">role</span>: <span class="code-string">"Web/App Developer"</span>,
+  <span class="code-prop">university</span>: <span class="code-string">"HCMUIT - ĐHQG TP.HCM (Năm 1)"</span>,
+  <span class="code-prop">highSchool</span>: <span class="code-string">"THPT Chuyên Thoại Ngọc Hầu (Chuyên Tin)"</span>,
+  <span class="code-prop">featuredProject</span>: <span class="code-string">"Nihongo NAKAMA 🇯🇵"</span>,
+  <span class="code-prop">email</span>: <span class="code-string">"tranduc6525@gmail.com"</span>
+};</code></pre>
+                    </div>
+
+                    <div class="floating-badges">
+                        <div class="floating-badge badge-uit">🎓 Sinh viên năm nhất HCMUIT</div>
+                        <div class="floating-badge badge-tnh">🏆 Cựu Chuyên Tin Thoại Ngọc Hầu</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2>Liên hệ</h2>
-            <p>Email: <a href="mailto:email@example.com">email@example.com</a></p>
-            <p>GitHub: <a href="https://github.com" target="_blank">://github.com</a></p>
-        </section>
-    </div>
+        <!-- 4. About Section (Bento Grid) -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">✨ Giới thiệu bản thân</span>
+                    <h2 class="section-title">Từ tư duy thuật toán Chuyên Tin đến kiến trúc Web/App hiện đại</h2>
+                    <p class="section-subtitle">
+                        Sự kết hợp giữa nền tảng Khoa học Máy tính bài bản và tư duy thiết kế trải nghiệm người dùng lấy sản phẩm thực tế làm trọng tâm.
+                    </p>
+                </div>
 
-    <footer>
-        <p>&copy; 2026 Nguyễn Văn A. All rights reserved.</p>
+                <div class="bento-grid">
+                    <!-- Card 1: Bio Story -->
+                    <article class="bento-card bento-bio reveal">
+                        <div>
+                            <div class="spotlight-badges" style="margin-bottom: 14px;">
+                                <span class="badge-pill">👨‍💻 Câu chuyện của Trần Đức</span>
+                            </div>
+                            <h3>Hành trình bền bỉ từ mái trường Chuyên Thoại Ngọc Hầu đến giảng đường HCMUIT</h3>
+                            <p>
+                                Niềm đam mê lập trình của mình bắt đầu bén rễ từ những năm tháng học lớp <strong>Chuyên Tin tại Trường THPT Chuyên Thoại Ngọc Hầu (An Giang)</strong>. Những giờ giải quyết bài toán cấu trúc dữ liệu, đồ thị và quy hoạch động đã rèn luyện cho mình thói quen phân tích vấn đề sắc bén, tối ưu từng dòng lệnh và không ngừng tìm kiếm lời giải tốt hơn.
+                            </p>
+                            <p>
+                                Bước vào giảng đường <strong>Trường Đại học Công nghệ Thông tin – ĐHQG TP.HCM (HCMUIT)</strong> với tư cách là một <strong>sinh viên năm nhất</strong> (sinh ngày <strong>17/06/2008</strong>), mình mở rộng tầm nhìn từ thuật toán thuần túy sang phát triển sản phẩm toàn diện (<strong>Web/App Developer</strong>). Mình tin rằng công nghệ chỉ thực sự sống động khi giải quyết được nhu cầu thực tiễn của con người thông qua giao diện trực quan và trải nghiệm mượt mà.
+                            </p>
+                        </div>
+                        <div class="timeline-tags" style="margin-top: 16px;">
+                            <span class="tag">🎯 Tư duy Thuật toán</span>
+                            <span class="tag">💻 Clean Architecture</span>
+                            <span class="tag">🚀 Product Mindset</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 2: Personal Quick Info -->
+                    <aside class="bento-card bento-info reveal">
+                        <div>
+                            <div class="spotlight-badges" style="margin-bottom: 14px;">
+                                <span class="badge-pill">📌 Thông tin cá nhân</span>
+                            </div>
+                            <h3>Hồ sơ tóm tắt</h3>
+                        </div>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">Họ và tên</span>
+                                <span class="info-value"><strong>Trần Đức</strong> (dustintran.me)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Ngày sinh</span>
+                                <span class="info-value">
+                                    <strong>17/06/2008</strong>
+                                    <span id="dynamic-age" class="badge-pill">18 tuổi</span>
+                                </span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Chuyên môn</span>
+                                <span class="info-value"><strong>Web/App Developer</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Đại học</span>
+                                <span class="info-value"><strong>HCMUIT (Sinh viên năm nhất)</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Cấp 3</span>
+                                <span class="info-value"><strong>THPT Chuyên Thoại Ngọc Hầu (Chuyên Tin)</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Email</span>
+                                <span class="info-value">
+                                    <a href="mailto:tranduc6525@gmail.com">tranduc6525@gmail.com</a>
+                                </span>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Card 3: 3 Development Pillars -->
+                    <article class="bento-card bento-focus reveal">
+                        <div>
+                            <div class="spotlight-badges" style="margin-bottom: 14px;">
+                                <span class="badge-pill">🎯 Định hướng cốt lõi</span>
+                            </div>
+                            <h3>3 Trụ cột phát triển chuyên môn</h3>
+                            <ul class="feature-list">
+                                <li><strong>Web Modern UI/UX &amp; Full-stack:</strong> Xây dựng ứng dụng Web chuẩn Semantic HTML5, CSS hiện đại, bất đồng bộ mượt mà và tối ưu tốc độ tải trang.</li>
+                                <li><strong>Cross-Platform App Development:</strong> Phát triển ứng dụng đa nền tảng đồng nhất trải nghiệm từ Desktop đến Mobile với khả năng tương tác cao.</li>
+                                <li><strong>Algorithmic Thinking &amp; Clean Architecture:</strong> Vận dụng tư duy Chuyên Tin để thiết kế cấu trúc mã nguồn rõ ràng, dễ bảo trì và tối ưu độ phức tạp thuật toán.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-tags" style="margin-top: 16px;">
+                            <span class="tag">🌐 Modern Web</span>
+                            <span class="tag">📱 Cross-Platform App</span>
+                            <span class="tag">⚡ Core CS &amp; Algorithms</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 4: Product Vision & Nihongo NAKAMA Inspiration -->
+                    <article class="bento-card bento-highlight reveal">
+                        <div>
+                            <div class="spotlight-badges" style="margin-bottom: 14px;">
+                                <span class="badge-featured">🌸 Cảm hứng EdTech</span>
+                                <span class="badge-jp">日本語仲間</span>
+                            </div>
+                            <h3>Tầm nhìn tạo nên Nihongo NAKAMA</h3>
+                            <p>
+                                Xuất phát từ nhu cầu tự học ngoại ngữ của sinh viên công nghệ, <strong>Đồ Án Web học tiếng Nhật Nihongo NAKAMA</strong> (<em>仲間 - Người bạn đồng hành</em>) được mình thai nghén nhằm biến việc ghi nhớ bảng chữ cái Hiragana, Katakana, chữ Hán (Kanji) và từ vựng JLPT trở nên sinh động, có tính tương tác hai chiều thay vì học thuộc lòng khô khan.
+                            </p>
+                        </div>
+                        <div class="timeline-tags" style="margin-top: 16px;">
+                            <span class="badge-pill">🇯🇵 JLPT N5 - N3</span>
+                            <span class="badge-pill">🎴 3D Interactive Flashcards</span>
+                            <span class="badge-pill">🔊 Web Speech API</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Education & Journey Section -->
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">🎓 Học vấn &amp; Hành trình</span>
+                    <h2 class="section-title">Cột mốc học tập &amp; phát triển</h2>
+                    <p class="section-subtitle">
+                        Chặng đường rèn luyện từ lớp Chuyên Tin trường chuyên tỉnh An Giang đến môi trường đại học công nghệ hàng đầu tại TP.HCM.
+                    </p>
+                </div>
+
+                <div class="timeline">
+                    <!-- Timeline Item 1: HCMUIT -->
+                    <article class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-card">
+                            <div class="timeline-header">
+                                <span class="timeline-date">2026 – Hiện tại</span>
+                                <span class="timeline-status status-active">Đang theo học</span>
+                            </div>
+                            <h3 class="timeline-title">Trường Đại học Công nghệ Thông tin – ĐHQG TP.HCM (HCMUIT)</h3>
+                            <p class="timeline-subtitle">Sinh viên Năm Nhất • Định hướng Web/App Developer</p>
+                            <p class="timeline-desc">
+                                Theo học chương trình đào tạo đại học chính quy tại HCMUIT. Tập trung nghiên cứu sâu về lập trình hướng đối tượng, cấu trúc dữ liệu &amp; giải thuật nâng cao, phát triển ứng dụng Web hiện đại và kiến trúc phần mềm. Chủ động thực hiện <strong>Đồ Án Web học tiếng Nhật Nihongo NAKAMA</strong> và tham gia các hoạt động học thuật, câu lạc bộ công nghệ.
+                            </p>
+                            <div class="timeline-tags">
+                                <span class="tag">HCMUIT Freshman</span>
+                                <span class="tag">Web/App Development</span>
+                                <span class="tag">Nihongo NAKAMA Project</span>
+                                <span class="tag">Data Structures &amp; OOP</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Timeline Item 2: THPT Chuyên Thoại Ngọc Hầu -->
+                    <article class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content timeline-card">
+                            <div class="timeline-header">
+                                <span class="timeline-date">2023 – 2026</span>
+                                <span class="timeline-status">Đã tốt nghiệp</span>
+                            </div>
+                            <h3 class="timeline-title">Trường THPT Chuyên Thoại Ngọc Hầu</h3>
+                            <p class="timeline-subtitle">Học sinh lớp Chuyên Tin Học</p>
+                            <p class="timeline-desc">
+                                Ba năm học tập và rèn luyện tại lớp <strong>Chuyên Tin</strong> của ngôi trường chuyên giàu truyền thống tại tỉnh An Giang. Được đào tạo bài bản về lập trình thi đấu (Competitive Programming) với C/C++, lý thuyết đồ thị, quy hoạch động, toán rời rạc và tư duy giải quyết vấn đề hệ thống — nền móng vững chắc để tiến xa trong lĩnh vực kỹ thuật phần mềm.
+                            </p>
+                            <div class="timeline-tags">
+                                <span class="tag">Chuyên Tin Thoại Ngọc Hầu</span>
+                                <span class="tag">Algorithms &amp; C++</span>
+                                <span class="tag">Competitive Programming</span>
+                                <span class="tag">Problem Solving</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Skills Section -->
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">⚡ Năng lực kỹ thuật</span>
+                    <h2 class="section-title">Kỹ năng &amp; Công nghệ sử dụng</h2>
+                    <p class="section-subtitle">
+                        Hệ sinh thái công nghệ phục vụ việc xây dựng giao diện Web sắc nét, ứng dụng đa nền tảng và xử lý thuật toán tối ưu.
+                    </p>
+                </div>
+
+                <!-- Skills Category Filter -->
+                <div class="skills-filter reveal" role="tablist" aria-label="Bộ lọc kỹ năng">
+                    <button type="button" class="filter-btn active" data-filter="all">Tất cả</button>
+                    <button type="button" class="filter-btn" data-filter="web">Web Development</button>
+                    <button type="button" class="filter-btn" data-filter="app">App &amp; Core CS</button>
+                    <button type="button" class="filter-btn" data-filter="tools">Công cụ &amp; Quy trình</button>
+                </div>
+
+                <!-- Skills Cards Grid (9 Cards) -->
+                <div class="skills-grid">
+                    <!-- Skill 1 (web) -->
+                    <article class="skill-card reveal" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-icon">🌐</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">HTML5 Semantic &amp; CSS3 Modern</h3>
+                                <span class="skill-level">Thành thạo • 92%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Thiết kế cấu trúc chuẩn SEO, Accessibility (ARIA), Flexbox, CSS Grid, Bento Layout, biến CSS và hiệu ứng chuyển động mượt mà.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="92%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 2 (web) -->
+                    <article class="skill-card reveal" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-icon">🟨</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">JavaScript (ES6+) &amp; TypeScript</h3>
+                                <span class="skill-level">Thành thạo • 88%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Lập trình bất đồng bộ, quản lý trạng thái DOM, Web APIs (LocalStorage, SpeechSynthesis, IntersectionObserver) và kiểu dữ liệu chặt chẽ.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 3 (web) -->
+                    <article class="skill-card reveal" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-icon">⚛️</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">React.js / Next.js &amp; Tailwind CSS</h3>
+                                <span class="skill-level">Khá giỏi • 84%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Xây dựng Single Page Application (SPA) theo hướng Component-driven, tối ưu hóa vòng đời render và thiết kế Responsive hiện đại.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="84%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 4 (web) -->
+                    <article class="skill-card reveal" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-icon">🖧</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">Node.js, RESTful API &amp; Database</h3>
+                                <span class="skill-level">Khá giỏi • 80%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Thiết kế API phục vụ ứng dụng học tập, kết nối cơ sở dữ liệu SQL/NoSQL, xác thực người dùng và đồng bộ tiến độ học tập.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 5 (app) -->
+                    <article class="skill-card reveal" data-category="app">
+                        <div class="skill-header">
+                            <span class="skill-icon">🏆</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">C / C++ &amp; Cấu trúc dữ liệu Giải thuật</h3>
+                                <span class="skill-level">Nền tảng Chuyên Tin • 90%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Thế mạnh từ thời Chuyên Tin THPT Chuyên Thoại Ngọc Hầu: Đồ thị, Quy hoạch động, Cây phân đoạn, Tìm kiếm và Tối ưu độ phức tạp.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 6 (app) -->
+                    <article class="skill-card reveal" data-category="app">
+                        <div class="skill-header">
+                            <span class="skill-icon">📱</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">Cross-Platform App &amp; PWA</h3>
+                                <span class="skill-level">Khá giỏi • 82%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Phát triển Progressive Web Apps và ứng dụng di động đa nền tảng với giao diện cảm ứng nhạy bén, hỗ trợ học ngoại ngữ mọi lúc mọi nơi.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="82%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 7 (app) -->
+                    <article class="skill-card reveal" data-category="app">
+                        <div class="skill-header">
+                            <span class="skill-icon">🧩</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">OOP &amp; Kiến trúc Phần mềm</h3>
+                                <span class="skill-level">Khá giỏi • 85%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Áp dụng nguyên lý lập trình hướng đối tượng được đào tạo tại HCMUIT, tách biệt tầng dữ liệu và giao diện (Clean Code &amp; Modular Design).
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 8 (tools) -->
+                    <article class="skill-card reveal" data-category="tools">
+                        <div class="skill-header">
+                            <span class="skill-icon">🔧</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">Git, GitHub &amp; CI/CD Deployment</h3>
+                                <span class="skill-level">Thành thạo • 88%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Quản lý phiên bản mã nguồn trên GitHub (`26520346-bit`), làm việc nhóm theo chuẩn Git Flow và triển khai tên miền `dustintran.me`.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88%"></div>
+                        </div>
+                    </article>
+
+                    <!-- Skill 9 (tools) -->
+                    <article class="skill-card reveal" data-category="tools">
+                        <div class="skill-header">
+                            <span class="skill-icon">🎨</span>
+                            <div class="skill-title-group">
+                                <h3 class="skill-name">Figma UI/UX &amp; EdTech Design</h3>
+                                <span class="skill-level">Khá giỏi • 83%</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">
+                            Thiết kế Wireframe, Prototype tương tác, hệ thống Typography đa ngôn ngữ (Việt - Nhật - Anh) và tối ưu trải nghiệm học tập số.
+                        </p>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="83%"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Projects Section (Spotlight Nihongo NAKAMA) -->
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">🚀 Dự án tiêu biểu</span>
+                    <h2 class="section-title">Sản phẩm tâm huyết &amp; Đồ án công nghệ</h2>
+                    <p class="section-subtitle">
+                        Tâm điểm là <strong>Đồ Án Web học tiếng Nhật Nihongo NAKAMA</strong> cùng các dự án thuật toán và tiện ích sinh viên.
+                    </p>
+                </div>
+
+                <!-- Spotlight Card: Nihongo NAKAMA -->
+                <article class="project-spotlight reveal">
+                    <!-- Left Column: Spotlight Info -->
+                    <div class="spotlight-info">
+                        <div class="spotlight-badges">
+                            <span class="badge-featured">🌸 ĐỒ ÁN TRỌNG ĐIỂM</span>
+                            <span class="badge-jp">日本語仲間 • EdTech Web</span>
+                        </div>
+
+                        <h3 class="spotlight-title">Đồ Án Web học tiếng Nhật: Nihongo NAKAMA</h3>
+
+                        <p class="spotlight-desc">
+                            <strong>Nihongo NAKAMA</strong> là nền tảng Web học tiếng Nhật hiện đại do <strong>Trần Đức</strong> thiết kế và phát triển, giúp người học chinh phục trọn vẹn hệ thống bảng chữ cái <strong>Hiragana, Katakana, Kanji</strong> và từ vựng <strong>JLPT (N5 – N3)</strong> thông qua phương pháp lật thẻ Flashcard 3D tương tác, luyện phát âm chuẩn bản xứ và phản xạ ghi nhớ chủ động (Active Recall).
+                        </p>
+
+                        <ul class="feature-list">
+                            <li><strong>Hệ thống Flashcard 3D thông minh:</strong> Phân chia theo chủ đề Từ vựng, Bảng chữ cái Kana và Kanji cơ bản kèm phiên âm Romaji, âm Hán Việt và câu ví dụ ngữ cảnh thực tế.</li>
+                            <li><strong>Tích hợp phát âm Web Speech API:</strong> Hỗ trợ nghe phát âm tiếng Nhật (`ja-JP`) trực tiếp trên trình duyệt giúp người học luyện nghe và chuẩn hóa ngữ điệu ngay lập tức.</li>
+                            <li><strong>Thuật toán lặp lại ngắt quãng (Spaced Repetition):</strong> Vận dụng tư duy thuật toán để ưu tiên hiển thị các từ vựng người học hay quên, tối ưu hóa tốc độ ghi nhớ dài hạn.</li>
+                            <li><strong>Giao diện chuẩn Nhật Bản &amp; Đa thiết bị:</strong> Kết hợp font chữ <em>Noto Sans JP</em> sắc nét, chế độ Sáng/Tối bảo vệ mắt và tương thích mượt mà trên cả điện thoại lẫn máy tính.</li>
+                        </ul>
+
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">HTML5/CSS3</span>
+                            <span class="tech-tag">JavaScript ES6+</span>
+                            <span class="tech-tag">Responsive Web App</span>
+                            <span class="tech-tag">Interactive Flashcards</span>
+                            <span class="tech-tag">JLPT N5-N3 Curriculum</span>
+                            <span class="tech-tag">Web Speech Pronunciation</span>
+                        </div>
+
+                        <div class="spotlight-actions">
+                            <button type="button" class="btn btn-primary" id="try-nakama-btn">
+                                Trải nghiệm Flashcard mẫu 🎴
+                            </button>
+                            <a href="#contact" class="btn btn-secondary">
+                                Trao đổi về dự án 💬
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Mini-App Widget -->
+                    <div class="spotlight-interactive">
+                        <div class="nakama-mini-app" id="nakama-widget">
+                            <div class="nakama-header">
+                                <div class="nakama-brand">🌸 Nihongo NAKAMA — Interactive Demo</div>
+                                <span class="nakama-counter" id="nakama-counter">1 / 6</span>
+                            </div>
+
+                            <div class="nakama-mode-tabs" role="tablist" aria-label="Chọn bộ thẻ tiếng Nhật">
+                                <button type="button" class="nakama-tab active" data-deck="vocab">Từ vựng</button>
+                                <button type="button" class="nakama-tab" data-deck="kana">Hiragana / Katakana</button>
+                                <button type="button" class="nakama-tab" data-deck="kanji">Kanji cơ bản</button>
+                            </div>
+
+                            <div class="nakama-card-stage">
+                                <div class="nakama-flashcard" id="nakama-flashcard" tabindex="0" role="button" aria-label="Nhấn để lật thẻ tiếng Nhật">
+                                    <div class="nakama-card-inner">
+                                        <!-- Front of Flashcard -->
+                                        <div class="nakama-card-front">
+                                            <span class="nakama-level-tag" id="nakama-level">JLPT N5</span>
+                                            <div class="nakama-jp-text" id="nakama-jp" lang="ja">仲間</div>
+                                            <div class="nakama-romaji" id="nakama-romaji">nakama (なかま)</div>
+                                            <span class="nakama-hint">👆 Nhấn vào thẻ để xem nghĩa &amp; ví dụ</span>
+                                        </div>
+
+                                        <!-- Back of Flashcard -->
+                                        <div class="nakama-card-back">
+                                            <div class="nakama-vi-meaning" id="nakama-vi">Bạn đồng hành / Đồng đội</div>
+                                            <p class="nakama-example" id="nakama-example">日本語を一緒に学ぶ仲間 (Những người bạn cùng nhau học tiếng Nhật)</p>
+                                            <span class="nakama-hint">👆 Nhấn để quay lại mặt trước</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="nakama-controls" style="grid-template-columns: repeat(4, 1fr);">
+                                <button type="button" class="btn-control" id="nakama-prev-btn">← Trước</button>
+                                <button type="button" class="btn-control btn-control-primary" id="nakama-flip-btn">🔄 Lật thẻ</button>
+                                <button type="button" class="btn-control" id="nakama-speak-btn">🔊 Phát âm</button>
+                                <button type="button" class="btn-control" id="nakama-next-btn">Tiếp →</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Secondary Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Secondary Project 1: Algorithm Visualizer (THPT Chuyên Thoại Ngọc Hầu) -->
+                    <article class="project-card reveal">
+                        <div>
+                            <div class="spotlight-badges" style="margin-bottom: 12px;">
+                                <span class="badge-pill">🧭 Chuyên Tin • Algorithms</span>
+                            </div>
+                            <h3>TNH AlgoVis — Trực quan hóa Thuật toán Đồ thị &amp; Quy hoạch động</h3>
+                            <p>
+                                Dự án lấy cảm hứng từ những năm tháng học tập tại lớp <strong>Chuyên Tin - Trường THPT Chuyên Thoại Ngọc Hầu</strong>. Ứng dụng Web mô phỏng trực quan từng bước chạy của các thuật toán tìm đường đi ngắn nhất (BFS, DFS, Dijkstra, A*) và sắp xếp mảng với tốc độ tùy chỉnh theo thời gian thực.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="project-tech-stack" style="margin-bottom: 16px;">
+                                <span class="tech-tag">HTML5 Canvas</span>
+                                <span class="tech-tag">JavaScript / TypeScript</span>
+                                <span class="tech-tag">Graph Algorithms</span>
+                                <span class="tech-tag">Data Structures</span>
+                            </div>
+                            <div class="spotlight-actions">
+                                <a href="https://github.com/26520346-bit" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                                    Xem trên GitHub ↗
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Secondary Project 2: UIT Freshman Companion (HCMUIT) -->
+                    <article class="project-card reveal">
+                        <div>
+                            <div class="spotlight-badges" style="margin-bottom: 12px;">
+                                <span class="badge-pill">🎓 HCMUIT • Student Utility App</span>
+                            </div>
+                            <h3>UIT StudyFlow — Không gian Quản lý Học tập &amp; Tín chỉ Sinh viên</h3>
+                            <p>
+                                Ứng dụng tiện ích dành cho sinh viên năm nhất <strong>Trường Đại học Công nghệ Thông tin – ĐHQG TP.HCM (HCMUIT)</strong>: hỗ trợ theo dõi lịch học, tính điểm trung bình tích lũy (GPA), quản lý tiến độ đồ án môn học và tích hợp đồng hồ Pomodoro rèn luyện sự tập trung.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="project-tech-stack" style="margin-bottom: 16px;">
+                                <span class="tech-tag">Responsive Web App</span>
+                                <span class="tech-tag">LocalStorage Sync</span>
+                                <span class="tech-tag">UI/UX Dashboard</span>
+                                <span class="tech-tag">PWA Ready</span>
+                            </div>
+                            <div class="spotlight-actions">
+                                <a href="https://github.com/26520346-bit" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                                    Xem trên GitHub ↗
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Contact Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">📬 Kết nối với Trần Đức</span>
+                    <h2 class="section-title">Liên hệ &amp; Hợp tác phát triển</h2>
+                    <p class="section-subtitle">
+                        Mình luôn cởi mở với các cơ hội thực tập, dự án Web/App thực tế, giao lưu học thuật hoặc trao đổi thêm về <strong>Đồ Án Web học tiếng Nhật Nihongo NAKAMA</strong>.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Left Column: Contact Info Cards -->
+                    <div class="contact-info reveal">
+                        <!-- Email Card -->
+                        <div class="contact-card-item">
+                            <div>
+                                <div class="info-label">✉️ Email trực tiếp</div>
+                                <div class="info-value" style="text-align: left; margin-top: 4px;">
+                                    <a href="mailto:tranduc6525@gmail.com">tranduc6525@gmail.com</a>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-copy" id="copy-email-btn" data-email="tranduc6525@gmail.com">
+                                Sao chép Email
+                            </button>
+                        </div>
+
+                        <!-- GitHub Card -->
+                        <div class="contact-card-item">
+                            <div>
+                                <div class="info-label">💻 GitHub chính thức</div>
+                                <div class="info-value" style="text-align: left; margin-top: 4px;">
+                                    <a href="https://github.com/26520346-bit" target="_blank" rel="noopener noreferrer">
+                                        https://github.com/26520346-bit
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="https://github.com/26520346-bit" target="_blank" rel="noopener noreferrer" class="btn-copy">
+                                Mở GitHub ↗
+                            </a>
+                        </div>
+
+                        <!-- University Card -->
+                        <div class="contact-card-item">
+                            <div>
+                                <div class="info-label">🏛️ Trường Đại học hiện tại</div>
+                                <div class="info-value" style="text-align: left; margin-top: 4px;">
+                                    HCMUIT (ĐH Công nghệ Thông tin - ĐHQG TP.HCM)
+                                </div>
+                            </div>
+                            <span class="badge-pill">Năm 1</span>
+                        </div>
+
+                        <!-- High School Card -->
+                        <div class="contact-card-item">
+                            <div>
+                                <div class="info-label">🏫 Cựu học sinh</div>
+                                <div class="info-value" style="text-align: left; margin-top: 4px;">
+                                    Chuyên Tin - THPT Chuyên Thoại Ngọc Hầu
+                                </div>
+                            </div>
+                            <span class="badge-pill">Chuyên Tin</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Contact Form -->
+                    <div class="contact-form-wrapper reveal">
+                        <form class="contact-form" id="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="sender-name">Họ và tên của bạn *</label>
+                                <input type="text" id="sender-name" name="name" placeholder="Nhập họ và tên..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sender-email">Địa chỉ Email *</label>
+                                <input type="email" id="sender-email" name="email" placeholder="example@domain.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sender-subject">Chủ đề trao đổi *</label>
+                                <input type="text" id="sender-subject" name="subject" placeholder="Hợp tác dự án Web/App / Trao đổi về Nihongo NAKAMA..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sender-message">Nội dung tin nhắn *</label>
+                                <textarea id="sender-message" name="message" rows="5" placeholder="Xin chào Trần Đức, mình muốn trao đổi về..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Gửi tin nhắn cho Trần Đức 🚀
+                            </button>
+
+                            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="#home" class="nav-logo" style="margin-bottom: 12px;">
+                <span class="logo-bracket">&lt;</span>Trần Đức<span class="logo-dot">.dev</span><span class="logo-bracket">/&gt;</span>
+            </a>
+            <p style="margin-bottom: 16px;">
+                <strong>Trần Đức</strong> (17/06/2008) • Web/App Developer • Sinh viên năm nhất <strong>HCMUIT</strong> • Cựu học sinh <strong>Chuyên Tin THPT Chuyên Thoại Ngọc Hầu</strong>.
+            </p>
+            <div class="timeline-tags" style="justify-content: center; margin-bottom: 18px;">
+                <a href="#home" class="tag">Trang chủ</a>
+                <a href="#about" class="tag">Giới thiệu</a>
+                <a href="#education" class="tag">Học vấn</a>
+                <a href="#skills" class="tag">Kỹ năng</a>
+                <a href="#projects" class="tag">Nihongo NAKAMA</a>
+                <a href="https://github.com/26520346-bit" target="_blank" rel="noopener noreferrer" class="tag">GitHub</a>
+                <a href="mailto:tranduc6525@gmail.com" class="tag">tranduc6525@gmail.com</a>
+            </div>
+            <p>&copy; 2026 <strong>Trần Đức</strong> (<a href="https://dustintran.me">dustintran.me</a>). Thiết kế &amp; phát triển với niềm đam mê công nghệ.</p>
+        </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-notification" role="status" aria-live="polite"></div>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Lên đầu trang">↑</button>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
-
