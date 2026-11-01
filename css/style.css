@@ -22,6 +22,7 @@
     --bg-card-hover: rgba(30, 41, 59, 0.85);
     --bg-glass: rgba(7, 11, 20, 0.8);
     --bg-glass-strong: rgba(15, 23, 42, 0.95);
+    --bg-code: #090d16;
     --bg-input: rgba(15, 23, 42, 0.85);
 
     /* Typography Colors */
@@ -72,7 +73,7 @@
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
 
     --nav-height: 74px;
-    --container-width: 1080px;
+    --container-width: 1120px;
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 18px;
@@ -95,6 +96,7 @@
     --bg-card-hover: #ffffff;
     --bg-glass: rgba(248, 250, 252, 0.86);
     --bg-glass-strong: rgba(255, 255, 255, 0.96);
+    --bg-code: #0f172a;
     --bg-input: #ffffff;
 
     /* Typography Colors */
@@ -409,7 +411,7 @@ button {
 }
 
 .nav-link {
-    padding: 7px 15px;
+    padding: 7px 14px;
     border-radius: var(--radius-full);
     font-size: 0.86rem;
     font-weight: 600;
@@ -530,7 +532,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   5. BUTTONS & STATUS BADGES
+   5. BUTTONS, BADGES & TAGS
    -------------------------------------------------------------------------- */
 .btn {
     display: inline-flex;
@@ -609,7 +611,7 @@ button {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 }
 
 .status-dot {
@@ -637,12 +639,54 @@ button {
     75%, 100% { transform: scale(2.2); opacity: 0; }
 }
 
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--cyan-soft);
+    color: var(--accent-cyan);
+    border: 1px solid var(--cyan-border);
+    transition: all var(--transition-fast);
+}
+
+.badge-pill:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-1px);
+}
+
+.tag,
+.tech-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 500;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-fast);
+}
+
+.tag:hover,
+.tech-tag:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    background: var(--cyan-soft);
+}
+
 /* --------------------------------------------------------------------------
-   6. HERO SECTION (INTERNATIONAL MINIMALIST CENTERPIECE)
+   6. HERO SECTION (INTERNATIONAL MINIMALIST + DEVELOPER CODE WINDOW)
    -------------------------------------------------------------------------- */
 .hero-section {
     min-height: 92vh;
-    padding-top: calc(var(--nav-height) + 48px);
+    padding-top: calc(var(--nav-height) + 44px);
     padding-bottom: 72px;
     display: flex;
     align-items: center;
@@ -656,19 +700,32 @@ button {
     text-align: center;
 }
 
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 48px;
+    align-items: center;
+}
+
 .hero-content {
     max-width: 780px;
     width: 100%;
+}
+
+.hero-container .hero-content {
     margin: 0 auto;
 }
 
 .hero-title {
-    font-size: clamp(2.4rem, 5vw, 3.85rem);
+    font-size: clamp(2.35rem, 4.8vw, 3.7rem);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.03em;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     color: var(--text-primary);
+}
+
+.hero-container .hero-title {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -681,36 +738,89 @@ button {
 }
 
 .hero-native-name {
-    font-size: 0.58em;
+    font-size: 0.56em;
     font-weight: 600;
     color: var(--text-muted);
     letter-spacing: -0.01em;
 }
 
+/* Role Subtitle Line (Web/App Developer • Vietnam–Japan IT @ HCMUIT) */
+.hero-role-line {
+    font-family: var(--font-mono);
+    font-size: clamp(0.92rem, 1.6vw, 1.08rem);
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+}
+
+.hero-role {
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 1.8vw, 1.22rem);
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 18px;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.hero-container .hero-role {
+    justify-content: center;
+}
+
+.typewriter-text {
+    color: var(--accent-cyan);
+    border-bottom: 2px solid var(--cyan-border);
+    padding-bottom: 2px;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    animation: cursorBlink 0.9s step-end infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .hero-description {
-    font-size: clamp(1.02rem, 1.8vw, 1.16rem);
+    font-size: clamp(1rem, 1.7vw, 1.12rem);
     color: var(--text-secondary);
     line-height: 1.78;
+    margin-bottom: 30px;
+}
+
+.hero-container .hero-description {
     max-width: 660px;
-    margin: 0 auto 32px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-cta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
     gap: 14px;
-    margin-bottom: 48px;
+    margin-bottom: 42px;
 }
 
-/* Clean Minimalist Hero Meta / Stats Bar (17/06/2008 | HCMUIT | Web/App Developer) */
+.hero-container .hero-cta {
+    justify-content: center;
+}
+
+/* Hero Stats / Meta Bar (Supports 4 Columns on Desktop, 2 on Tablet, 1 on Mobile) */
 .hero-stats,
 .hero-meta {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    padding: 24px 28px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding: 18px 20px;
     border-radius: var(--radius-lg);
     background: var(--bg-card);
     background-image: var(--gradient-subtle);
@@ -726,19 +836,21 @@ button {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 0 12px;
+    padding-right: 10px;
     border-right: 1px solid var(--border-subtle);
+    min-width: 0;
 }
 
 .stat-item:last-child,
 .meta-item:last-child {
+    padding-right: 0;
     border-right: none;
 }
 
 .stat-label,
 .meta-label {
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
@@ -748,14 +860,93 @@ button {
 .stat-number,
 .meta-value {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: -0.01em;
+    line-height: 1.3;
 }
 
+/* Hero Visual & Minimal Code Window */
+.hero-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.code-window {
+    background: var(--bg-code);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    position: relative;
+    transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.code-window:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan-border);
+}
+
+.window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: rgba(30, 41, 59, 0.65);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.window-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-red { background-color: #f43f5e; }
+.dot-yellow { background-color: #f59e0b; }
+.dot-green { background-color: #10b981; }
+
+.window-title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.window-body {
+    padding: 22px 24px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.72;
+    color: #e2e8f0;
+    overflow-x: auto;
+    margin: 0;
+}
+
+.window-body code {
+    font-family: inherit;
+    white-space: pre;
+    display: block;
+}
+
+.code-keyword { color: #f43f5e; font-weight: 600; }
+.code-var { color: #38bdf8; }
+.code-prop { color: #a5b4fc; }
+.code-string { color: #34d399; }
+.code-comment { color: #64748b; font-style: italic; }
+
 /* --------------------------------------------------------------------------
-   7. ABOUT SECTION (CLEAN 2-COLUMN BENTO LAYOUT)
+   7. ABOUT SECTION (CLEAN 2-COLUMN BENTO LAYOUT & HIGHLIGHTS)
    -------------------------------------------------------------------------- */
 .about-grid,
 .bento-grid {
@@ -772,7 +963,7 @@ button {
     background-image: var(--gradient-subtle);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 34px;
+    padding: 32px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: var(--shadow-sm);
@@ -781,7 +972,8 @@ button {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .bento-card:hover,
@@ -802,18 +994,60 @@ button {
     grid-column: span 6;
 }
 
+.bento-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    background: var(--cyan-soft);
+    border: 1px solid var(--cyan-border);
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.bento-card-title,
+.bento-title,
+.bento-card h3 {
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+
 .about-bio-text,
+.bento-text,
 .bento-card p {
     color: var(--text-secondary);
-    font-size: 1.06rem;
-    line-height: 1.85;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.about-bio-text:last-child,
+.bento-text:last-child,
+.bento-card p:last-child {
+    margin-bottom: 0;
+}
+
+.about-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 8px;
 }
 
 /* Info List inside About Section */
 .info-list {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 12px;
     width: 100%;
 }
 
@@ -822,7 +1056,7 @@ button {
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    padding-bottom: 12px;
+    padding-bottom: 11px;
     border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -843,6 +1077,11 @@ button {
     font-weight: 600;
     color: var(--text-primary);
     text-align: right;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .info-value a {
@@ -856,11 +1095,86 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   8. EDUCATION TIMELINE (HCMUIT & THPT Chuyên Thoại Ngọc Hầu)
+   8. WHAT I DO / ENGINEERING FOCUS (.focus-grid, .focus-card)
+   -------------------------------------------------------------------------- */
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.focus-card {
+    background: var(--bg-card);
+    background-image: var(--gradient-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 30px 28px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.focus-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.focus-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.focus-card:hover::before {
+    opacity: 1;
+}
+
+.focus-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--cyan-soft);
+    border: 1px solid var(--cyan-border);
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+}
+
+.focus-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+
+.focus-card-desc {
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   9. EDUCATION TIMELINE (HCMUIT & THPT Chuyên Thoại Ngọc Hầu)
    -------------------------------------------------------------------------- */
 .timeline {
     position: relative;
-    max-width: 780px;
+    max-width: 820px;
     margin: 0 auto;
     padding-left: 36px;
 }
@@ -878,7 +1192,7 @@ button {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 26px;
 }
 
 .timeline-item:last-child {
@@ -953,18 +1267,33 @@ button {
 
 .timeline-subtitle {
     font-size: 0.94rem;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+}
+
+.timeline-desc {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+.timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 /* --------------------------------------------------------------------------
-   9. SKILLS SECTION (MINIMALIST 2x2 GRID, NO PERCENT BARS)
+   10. SKILLS SECTION & LANGUAGES BAR (.skills-grid, .languages-bar)
    -------------------------------------------------------------------------- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    max-width: 920px;
+    max-width: 960px;
     margin: 0 auto;
 }
 
@@ -1041,8 +1370,60 @@ button {
     line-height: 1.68;
 }
 
+/* Languages Proficiency Bar below Skills Grid */
+.languages-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 960px;
+    margin: 28px auto 0;
+}
+
+.lang-proficiency-card {
+    background: var(--bg-card);
+    background-image: var(--gradient-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    transition: all var(--transition-base);
+}
+
+.lang-proficiency-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.lang-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-level {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    background: var(--cyan-soft);
+    color: var(--accent-cyan);
+    border: 1px solid var(--cyan-border);
+    line-height: 1.4;
+}
+
 /* --------------------------------------------------------------------------
-   10. PROJECTS SECTION (MINIMALIST EMPTY STATE)
+   11. PROJECTS SECTION (MINIMALIST EMPTY STATE)
    -------------------------------------------------------------------------- */
 .projects-empty {
     max-width: 680px;
@@ -1099,7 +1480,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   11. CONTACT SECTION & FORM
+   12. CONTACT SECTION & FORM
    -------------------------------------------------------------------------- */
 .contact-grid {
     display: grid;
@@ -1123,7 +1504,7 @@ button {
     background-image: var(--gradient-subtle);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 22px 24px;
+    padding: 20px 24px;
     backdrop-filter: blur(12px);
     transition: all var(--transition-base);
 }
@@ -1134,32 +1515,51 @@ button {
     box-shadow: var(--shadow-sm);
 }
 
+.contact-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--cyan-soft);
+    border: 1px solid var(--cyan-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.contact-details,
 .contact-meta {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+    flex: 1;
     min-width: 0;
 }
 
+.contact-label,
 .contact-meta .info-label {
     font-family: var(--font-mono);
     font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
+    font-weight: 600;
 }
 
+.contact-value,
 .contact-link,
 .contact-meta .info-value {
     font-family: var(--font-mono);
-    font-size: 0.96rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-primary);
     text-align: left;
     word-break: break-all;
 }
 
+a.contact-value:hover,
 .contact-link:hover {
     color: var(--accent-cyan);
 }
@@ -1263,7 +1663,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   12. FOOTER, TOAST, BACK-TO-TOP & REVEAL ANIMATIONS
+   13. FOOTER, TOAST, BACK-TO-TOP & REVEAL ANIMATIONS
    -------------------------------------------------------------------------- */
 .footer {
     padding: 36px 0;
@@ -1360,14 +1760,37 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   13. RESPONSIVE DESIGN (TABLET & MOBILE)
+   14. RESPONSIVE DESIGN (TABLET & MOBILE)
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-stats,
+    .hero-meta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-item:nth-child(2),
+    .meta-item:nth-child(2) {
+        border-right: none;
+    }
+
     .bento-bio,
     .bento-info,
     .about-bio-card,
     .about-info-card {
         grid-column: span 12;
+    }
+
+    .focus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .languages-bar {
+        grid-template-columns: 1fr;
     }
 
     .contact-grid {
@@ -1472,5 +1895,6 @@ button {
 
     .info-value {
         text-align: left;
+        justify-content: flex-start;
     }
 }
