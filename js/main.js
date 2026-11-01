@@ -1,8 +1,9 @@
 /**
  * ============================================================================
- * PORTFOLIO TRẦN ĐỨC - INTERACTIVE JAVASCRIPT ENGINE (main.js)
- * Author: Trần Đức (17/06/2008) - Web/App Developer | HCMUIT Freshman
- * Featured Project: Nihongo NAKAMA (Đồ Án Web Học Tiếng Nhật)
+ * TRAN DUC PORTFOLIO - INTERNATIONAL MULTILINGUAL & INTERACTIVE ENGINE (main.js)
+ * Author: Tran Duc (17/06/2008) - Web/App Developer
+ * Education: HCMUIT (First-year Student) | Thoai Ngoc Hau Gifted High School (Informatics)
+ * Languages Supported: English (en - Default), Japanese (ja), Vietnamese (vi)
  * ============================================================================
  */
 
@@ -10,19 +11,291 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const EMAIL_ADDRESS = 'tranduc6525@gmail.com';
+    const PHONE_NUMBER = '0765902422';
+    const LANG_STORAGE_KEY = 'portfolio_lang';
+    const THEME_STORAGE_KEY = 'theme';
 
     /* ========================================================================
-     * 0. TOAST NOTIFICATION SYSTEM (#toast-notification)
+     * 1. MULTILINGUAL I18N DICTIONARY (EN / JA / VI)
+     * ======================================================================== */
+    const I18N_DICTIONARY = {
+        en: {
+            'nav.home': 'Home',
+            'nav.about': 'About',
+            'nav.education': 'Education',
+            'nav.skills': 'Skills',
+            'nav.projects': 'Projects',
+            'nav.contact': 'Contact',
+
+            'hero.badge': 'Web/App Developer',
+            'hero.greeting': "Hi, I'm",
+            'hero.description':
+                'First-year student at the University of Information Technology – VNU-HCM (HCMUIT) and former Informatics major at Thoai Ngoc Hau Gifted High School.',
+            'hero.ctaPrimary': 'Contact Me',
+            'hero.ctaSecondary': 'About Me',
+            'hero.dobLabel': 'Date of Birth',
+            'hero.eduLabel': 'University',
+            'hero.roleLabel': 'Role',
+
+            'about.tag': 'About',
+            'about.title': 'Personal Profile',
+            'about.subtitle': 'Background and verified personal details.',
+            'about.bio':
+                'I am Tran Duc, born on 17/06/2008. I am currently a first-year student at the University of Information Technology – VNU-HCM (HCMUIT) and graduated from the Informatics specialized class at Thoai Ngoc Hau Gifted High School. My focus is building clean, reliable Web and Mobile applications.',
+            'about.info.name': 'Full Name',
+            'about.info.dob': 'Date of Birth',
+            'about.info.role': 'Role',
+            'about.info.university': 'University',
+            'about.info.universityVal': 'HCMUIT (First-year Student)',
+            'about.info.highschool': 'High School',
+            'about.info.highschoolVal': 'Thoai Ngoc Hau Gifted High School (Informatics)',
+            'about.info.email': 'Email',
+            'about.info.phone': 'Phone',
+
+            'edu.tag': 'Education',
+            'edu.title': 'Academic Journey',
+            'edu.uit.period': 'Present • First-year Student',
+            'edu.uit.school': 'University of Information Technology – VNU-HCM (HCMUIT)',
+            'edu.uit.role': 'Undergraduate Student • Web/App Developer',
+            'edu.tnh.period': 'High School',
+            'edu.tnh.school': 'Thoai Ngoc Hau Gifted High School',
+            'edu.tnh.role': 'Informatics Major (Chuyên Tin)',
+
+            'skills.tag': 'Skills',
+            'skills.title': 'Technical Stack',
+            'skills.cpp.desc': 'Core programming, data structures, and algorithmic problem solving.',
+            'skills.web.desc': 'Modern, responsive web interfaces and interactive frontend development.',
+            'skills.python.desc': 'Scripting, automation, and general-purpose application development.',
+            'skills.git.desc': 'Version control and collaborative source code management.',
+
+            'projects.tag': 'Projects',
+            'projects.title': 'Selected Works',
+            'projects.emptyTitle': 'Projects Coming Soon',
+            'projects.emptyDesc':
+                'This section is temporarily left blank. Upcoming Web and App projects will be published here soon.',
+
+            'contact.tag': 'Contact',
+            'contact.title': 'Get In Touch',
+            'contact.subtitle': 'Feel free to reach out directly via email or phone.',
+            'contact.emailLabel': 'Email',
+            'contact.phoneLabel': 'Phone',
+            'contact.copyBtn': 'Copy',
+            'contact.form.name': 'Your Name',
+            'contact.form.namePlaceholder': 'Enter your name',
+            'contact.form.email': 'Your Email',
+            'contact.form.emailPlaceholder': 'name@example.com',
+            'contact.form.message': 'Message',
+            'contact.form.messagePlaceholder': 'Write your message here...',
+            'contact.form.submit': 'Send Message',
+
+            'footer.rights': 'All rights reserved.'
+        },
+
+        ja: {
+            'nav.home': 'ホーム',
+            'nav.about': '自己紹介',
+            'nav.education': '学歴',
+            'nav.skills': 'スキル',
+            'nav.projects': 'プロジェクト',
+            'nav.contact': '連絡先',
+
+            'hero.badge': 'Web / アプリ開発者',
+            'hero.greeting': 'はじめまして、',
+            'hero.description':
+                'ホーチミン市情報技術大学（HCMUIT）の1年生であり、トアイ・ゴック・ハウ英才高等学校の情報科出身です。Webおよびアプリケーション開発に取り組んでいます。',
+            'hero.ctaPrimary': 'お問い合わせ',
+            'hero.ctaSecondary': 'プロフィール',
+            'hero.dobLabel': '生年月日',
+            'hero.eduLabel': '大学',
+            'hero.roleLabel': '専門分野',
+
+            'about.tag': '自己紹介',
+            'about.title': 'プロフィール',
+            'about.subtitle': '基本情報とこれまでの歩み。',
+            'about.bio':
+                '2008年6月17日生まれのチャン・ドゥック（Trần Đức）です。トアイ・ゴック・ハウ英才高等学校の情報科を卒業し、現在はホーチミン市情報技術大学（HCMUIT）の1年生として、Webおよびアプリケーション開発に注力しています。',
+            'about.info.name': '氏名',
+            'about.info.dob': '生年月日',
+            'about.info.role': '役職',
+            'about.info.university': '大学',
+            'about.info.universityVal': 'HCMUIT（大学1年生）',
+            'about.info.highschool': '出身高校',
+            'about.info.highschoolVal': 'トアイ・ゴック・ハウ英才高等学校（情報科）',
+            'about.info.email': 'メール',
+            'about.info.phone': '電話番号',
+
+            'edu.tag': '学歴',
+            'edu.title': '学歴・経歴',
+            'edu.uit.period': '現在 • 1年生',
+            'edu.uit.school': 'ホーチミン市情報技術大学 (HCMUIT)',
+            'edu.uit.role': '学部生 • Web/App Developer',
+            'edu.tnh.period': '高校',
+            'edu.tnh.school': 'トアイ・ゴック・ハウ英才高等学校',
+            'edu.tnh.role': '情報学専攻（専門クラス）',
+
+            'skills.tag': 'スキル',
+            'skills.title': '技術スタック',
+            'skills.cpp.desc': 'コアプログラミング、データ構造、アルゴリズムによる問題解決。',
+            'skills.web.desc': 'モダンでレスポンシブなWebインターフェースとフロントエンド開発。',
+            'skills.python.desc': 'スクリプト作成、自動化、汎用アプリケーション開発。',
+            'skills.git.desc': 'バージョン管理およびソースコード管理。',
+
+            'projects.tag': 'プロジェクト',
+            'projects.title': '制作実績',
+            'projects.emptyTitle': 'プロジェクト準備中',
+            'projects.emptyDesc':
+                '現在このセクションは準備中です。Webおよびアプリ開発プロジェクトを順次公開予定です。',
+
+            'contact.tag': '連絡先',
+            'contact.title': 'お問い合わせ',
+            'contact.subtitle': 'メールまたはお電話にてお気軽にご連絡ください。',
+            'contact.emailLabel': 'メールアドレス',
+            'contact.phoneLabel': '電話番号',
+            'contact.copyBtn': 'コピー',
+            'contact.form.name': 'お名前',
+            'contact.form.namePlaceholder': 'お名前を入力してください',
+            'contact.form.email': 'メールアドレス',
+            'contact.form.emailPlaceholder': 'name@example.com',
+            'contact.form.message': 'メッセージ',
+            'contact.form.messagePlaceholder': 'メッセージを入力してください...',
+            'contact.form.submit': 'メッセージを送信',
+
+            'footer.rights': 'All rights reserved.'
+        },
+
+        vi: {
+            'nav.home': 'Trang chủ',
+            'nav.about': 'Giới thiệu',
+            'nav.education': 'Học vấn',
+            'nav.skills': 'Kỹ năng',
+            'nav.projects': 'Dự án',
+            'nav.contact': 'Liên hệ',
+
+            'hero.badge': 'Web/App Developer',
+            'hero.greeting': 'Xin chào, mình là',
+            'hero.description':
+                'Sinh viên năm nhất tại Trường Đại học Công nghệ Thông tin – ĐHQG TP.HCM (HCMUIT), cựu học sinh Chuyên Tin tại Trường THPT Chuyên Thoại Ngọc Hầu.',
+            'hero.ctaPrimary': 'Liên hệ ngay',
+            'hero.ctaSecondary': 'Về bản thân',
+            'hero.dobLabel': 'Ngày sinh',
+            'hero.eduLabel': 'Đại học',
+            'hero.roleLabel': 'Vai trò',
+
+            'about.tag': 'Giới thiệu',
+            'about.title': 'Thông tin cá nhân',
+            'about.subtitle': 'Thông tin cơ bản và hành trình học tập.',
+            'about.bio':
+                'Mình là Trần Đức, sinh ngày 17/06/2008. Hiện mình đang là sinh viên năm nhất tại Trường Đại học Công nghệ Thông tin – ĐHQG TP.HCM (HCMUIT), cựu học sinh lớp Chuyên Tin tại Trường THPT Chuyên Thoại Ngọc Hầu, định hướng phát triển Web và App.',
+            'about.info.name': 'Họ và tên',
+            'about.info.dob': 'Ngày sinh',
+            'about.info.role': 'Vai trò',
+            'about.info.university': 'Đại học',
+            'about.info.universityVal': 'HCMUIT (Sinh viên năm nhất)',
+            'about.info.highschool': 'Cấp 3',
+            'about.info.highschoolVal': 'THPT Chuyên Thoại Ngọc Hầu (Chuyên Tin)',
+            'about.info.email': 'Email',
+            'about.info.phone': 'Số điện thoại',
+
+            'edu.tag': 'Học vấn',
+            'edu.title': 'Hành trình học tập',
+            'edu.uit.period': 'Hiện tại • Sinh viên năm nhất',
+            'edu.uit.school': 'Trường Đại học Công nghệ Thông tin – ĐHQG TP.HCM (HCMUIT)',
+            'edu.uit.role': 'Sinh viên năm nhất • Web/App Developer',
+            'edu.tnh.period': 'Cấp 3',
+            'edu.tnh.school': 'Trường THPT Chuyên Thoại Ngọc Hầu',
+            'edu.tnh.role': 'Chuyên Tin học',
+
+            'skills.tag': 'Kỹ năng',
+            'skills.title': 'Kỹ năng lập trình',
+            'skills.cpp.desc': 'Lập trình cốt lõi, cấu trúc dữ liệu và giải quyết bài toán thuật toán.',
+            'skills.web.desc': 'Phát triển giao diện web hiện đại, tương thích đa thiết bị.',
+            'skills.python.desc': 'Lập trình kịch bản, tự động hóa và phát triển ứng dụng.',
+            'skills.git.desc': 'Quản lý phiên bản và mã nguồn dự án.',
+
+            'projects.tag': 'Dự án',
+            'projects.title': 'Dự án',
+            'projects.emptyTitle': 'Dự án đang được cập nhật',
+            'projects.emptyDesc':
+                'Phần dự án hiện đang tạm để trống và sẽ sớm được cập nhật trong thời gian tới.',
+
+            'contact.tag': 'Liên hệ',
+            'contact.title': 'Liên hệ với tôi',
+            'contact.subtitle': 'Hãy liên hệ trực tiếp với mình qua email hoặc số điện thoại.',
+            'contact.emailLabel': 'Email',
+            'contact.phoneLabel': 'Số điện thoại',
+            'contact.copyBtn': 'Sao chép',
+            'contact.form.name': 'Họ và tên',
+            'contact.form.namePlaceholder': 'Nhập họ và tên của bạn',
+            'contact.form.email': 'Email của bạn',
+            'contact.form.emailPlaceholder': 'name@example.com',
+            'contact.form.message': 'Nội dung tin nhắn',
+            'contact.form.messagePlaceholder': 'Nhập nội dung tin nhắn...',
+            'contact.form.submit': 'Gửi tin nhắn',
+
+            'footer.rights': 'Mọi quyền được bảo lưu.'
+        }
+    };
+
+    const UI_MESSAGES = {
+        en: {
+            copiedEmail: `📋 Copied email: ${EMAIL_ADDRESS}`,
+            copiedPhone: `📞 Copied phone: ${PHONE_NUMBER}`,
+            copiedGeneric: (val) => `📋 Copied: ${val}`,
+            themeDark: '🌙 Switched to Dark Mode',
+            themeLight: '☀️ Switched to Light Mode',
+            formMissing: '⚠️ Please fill in your Name, Email, and Message.',
+            formSending: `✅ Opening your email client to send message to ${EMAIL_ADDRESS}...`,
+            langChanged: '🌐 Language set to English'
+        },
+        ja: {
+            copiedEmail: `📋 メールアドレスをコピーしました: ${EMAIL_ADDRESS}`,
+            copiedPhone: `📞 電話番号をコピーしました: ${PHONE_NUMBER}`,
+            copiedGeneric: (val) => `📋 コピーしました: ${val}`,
+            themeDark: '🌙 ダークモードに切り替えました',
+            themeLight: '☀️ ライトモードに切り替えました',
+            formMissing: '⚠️ お名前、メールアドレス、メッセージをすべて入力してください。',
+            formSending: `✅ メールアプリを開いています（宛先: ${EMAIL_ADDRESS}）...`,
+            langChanged: '🇯🇵 日本語に切り替えました'
+        },
+        vi: {
+            copiedEmail: `📋 Đã sao chép email: ${EMAIL_ADDRESS}`,
+            copiedPhone: `📞 Đã sao chép SĐT: ${PHONE_NUMBER}`,
+            copiedGeneric: (val) => `📋 Đã sao chép: ${val}`,
+            themeDark: '🌙 Đã chuyển sang chế độ Tối',
+            themeLight: '☀️ Đã chuyển sang chế độ Sáng',
+            formMissing: '⚠️ Vui lòng điền đầy đủ Họ tên, Email và Nội dung tin nhắn.',
+            formSending: `✅ Đang mở ứng dụng Email để gửi tới ${EMAIL_ADDRESS}...`,
+            langChanged: '🇻🇳 Đã chuyển sang Tiếng Việt'
+        }
+    };
+
+    const TYPEWRITER_PHRASES = {
+        en: [
+            'Web/App Developer',
+            'First-year Student at HCMUIT',
+            'Thoai Ngoc Hau Informatics Alumni'
+        ],
+        ja: [
+            'Web / アプリ開発者',
+            'HCMUIT 大学1年生',
+            'トアイ・ゴック・ハウ英才高校 情報科出身'
+        ],
+        vi: [
+            'Web/App Developer',
+            'Sinh viên Năm Nhất HCMUIT',
+            'Cựu Chuyên Tin Thoại Ngọc Hầu'
+        ]
+    };
+
+    let currentLang = 'en';
+
+    /* ========================================================================
+     * 2. TOAST NOTIFICATION SYSTEM (#toast-notification)
      * ======================================================================== */
     const toastEl = document.getElementById('toast-notification');
     let toastTimeoutId = null;
 
-    /**
-     * Hiển thị thông báo Toast góc màn hình
-     * @param {string} message Nội dung thông báo
-     * @param {number} duration Thời gian hiển thị (ms)
-     */
-    function showToast(message, duration = 3200) {
+    function showToast(message, duration = 2800) {
         if (!toastEl) return;
 
         const messageSpan =
@@ -49,27 +322,119 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * 1. TYPEWRITER EFFECT (#typewriter-text)
+     * 3. DYNAMIC AGE CALCULATION (#dynamic-age) - DOB: 17/06/2008
+     * ======================================================================== */
+    function updateDynamicAge(lang = currentLang) {
+        const ageEl = document.getElementById('dynamic-age');
+        if (!ageEl) return;
+
+        const birthDate = new Date(2008, 5, 17); // 17/06/2008
+        const now = new Date();
+
+        let age = now.getFullYear() - birthDate.getFullYear();
+        const monthDiff = now.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        if (age < 16 || Number.isNaN(age)) {
+            age = 18;
+        }
+
+        if (lang === 'ja') {
+            ageEl.textContent = `${age}歳`;
+        } else if (lang === 'vi') {
+            ageEl.textContent = `${age} tuổi`;
+        } else {
+            ageEl.textContent = `${age} yrs`;
+        }
+    }
+
+    /* ========================================================================
+     * 4. MULTILINGUAL SWITCHER (.lang-btn[data-lang])
+     * ======================================================================== */
+    function applyLanguage(lang, notify = false) {
+        const normalizedLang = I18N_DICTIONARY[lang] ? lang : 'en';
+        currentLang = normalizedLang;
+
+        const dict = I18N_DICTIONARY[normalizedLang];
+
+        // 1. Cập nhật thuộc tính lang trên thẻ <html>
+        document.documentElement.lang = normalizedLang;
+        document.documentElement.setAttribute('data-lang', normalizedLang);
+
+        // 2. Dịch toàn bộ phần tử [data-i18n]
+        const i18nElements = document.querySelectorAll('[data-i18n]');
+        i18nElements.forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
+                el.textContent = dict[key];
+            }
+        });
+
+        // 3. Dịch toàn bộ thuộc tính placeholder cho [data-i18n-placeholder]
+        const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholderElements.forEach((el) => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
+                el.setAttribute('placeholder', dict[key]);
+            }
+        });
+
+        // 4. Cập nhật trạng thái active cho các nút .lang-btn[data-lang]
+        const langButtons = document.querySelectorAll('.lang-btn[data-lang]');
+        langButtons.forEach((btn) => {
+            const btnLang = btn.getAttribute('data-lang');
+            const isActive = btnLang === normalizedLang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', String(isActive));
+        });
+
+        // 5. Cập nhật tuổi động theo ngôn ngữ
+        updateDynamicAge(normalizedLang);
+
+        // 6. Lưu vào localStorage
+        try {
+            localStorage.setItem(LANG_STORAGE_KEY, normalizedLang);
+        } catch (_) {
+            // Bỏ qua nếu localStorage bị hạn chế
+        }
+
+        if (notify && UI_MESSAGES[normalizedLang]) {
+            showToast(UI_MESSAGES[normalizedLang].langChanged, 2000);
+        }
+    }
+
+    function initLanguageSystem() {
+        let savedLang = 'en';
+        try {
+            const stored = localStorage.getItem(LANG_STORAGE_KEY);
+            if (stored && I18N_DICTIONARY[stored]) {
+                savedLang = stored;
+            }
+        } catch (_) {
+            savedLang = 'en';
+        }
+
+        applyLanguage(savedLang, false);
+
+        const langButtons = document.querySelectorAll('.lang-btn[data-lang]');
+        langButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const targetLang = btn.getAttribute('data-lang');
+                if (targetLang && targetLang !== currentLang) {
+                    applyLanguage(targetLang, true);
+                }
+            });
+        });
+    }
+
+    /* ========================================================================
+     * 5. OPTIONAL TYPEWRITER EFFECT (#typewriter-text)
      * ======================================================================== */
     function initTypewriter() {
         const typewriterEl = document.getElementById('typewriter-text');
         if (!typewriterEl) return;
-
-        const phrases = [
-            'Web/App Developer',
-            'Sinh viên Năm Nhất HCMUIT',
-            'Cựu Chuyên Tin Thoại Ngọc Hầu',
-            'Creator of Nihongo NAKAMA 🇯🇵'
-        ];
-
-        // Tách chuỗi theo grapheme/code-point để không làm vỡ emoji cờ Nhật 🇯🇵
-        const splitGraphemes = (str) => {
-            if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-                const segmenter = new Intl.Segmenter('vi', { granularity: 'grapheme' });
-                return Array.from(segmenter.segment(str), (s) => s.segment);
-            }
-            return Array.from(str);
-        };
 
         let phraseIndex = 0;
         let charIndex = 0;
@@ -77,17 +442,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const TYPE_SPEED = 75;
         const DELETE_SPEED = 40;
-        const PAUSE_END = 1900;
+        const PAUSE_END = 1800;
         const PAUSE_START = 350;
 
         function tick() {
-            const currentChars = splitGraphemes(phrases[phraseIndex]);
+            const phrases = TYPEWRITER_PHRASES[currentLang] || TYPEWRITER_PHRASES.en;
+            const currentPhrase = phrases[phraseIndex % phrases.length];
+            const chars = Array.from(currentPhrase);
 
             if (!isDeleting) {
                 charIndex++;
-                typewriterEl.textContent = currentChars.slice(0, charIndex).join('');
+                typewriterEl.textContent = chars.slice(0, charIndex).join('');
 
-                if (charIndex >= currentChars.length) {
+                if (charIndex >= chars.length) {
                     isDeleting = true;
                     setTimeout(tick, PAUSE_END);
                     return;
@@ -95,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(tick, TYPE_SPEED);
             } else {
                 charIndex--;
-                typewriterEl.textContent = currentChars.slice(0, charIndex).join('');
+                typewriterEl.textContent = chars.slice(0, charIndex).join('');
 
                 if (charIndex <= 0) {
                     isDeleting = false;
@@ -111,48 +478,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * 2. DYNAMIC AGE CALCULATION (#dynamic-age) - DOB: 17/06/2008
-     * ======================================================================== */
-    function initDynamicAge() {
-        const ageEl = document.getElementById('dynamic-age');
-        if (!ageEl) return;
-
-        const birthDate = new Date(2008, 5, 17); // Tháng 6 là index 5 (0-based)
-        const now = new Date();
-
-        let age = now.getFullYear() - birthDate.getFullYear();
-        const monthDiff = now.getMonth() - birthDate.getMonth();
-        if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
-            age--;
-        }
-
-        // Đảm bảo giá trị hợp lệ (Trần Đức sinh năm 2008 -> 17-18+ tuổi)
-        if (age < 16 || Number.isNaN(age)) {
-            age = 18;
-        }
-
-        const existingText = ageEl.textContent.trim().toLowerCase();
-        const parentText = ageEl.parentElement ? ageEl.parentElement.textContent.toLowerCase() : '';
-        const parentHasTuoiOutside =
-            parentText.replace(existingText, '').includes('tuổi');
-
-        if (existingText.includes('tuổi') || !parentHasTuoiOutside) {
-            ageEl.textContent = `${age} tuổi`;
-        } else {
-            ageEl.textContent = `${age}`;
-        }
-    }
-
-    /* ========================================================================
-     * 3. DARK / LIGHT THEME TOGGLE (#theme-toggle, #theme-icon)
+     * 6. DARK / LIGHT THEME TOGGLE (#theme-toggle, #theme-icon)
      * ======================================================================== */
     function initThemeToggle() {
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const rootEl = document.documentElement;
 
-        const savedTheme = localStorage.getItem('theme');
-        const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+        let savedTheme = 'dark';
+        try {
+            const stored = localStorage.getItem(THEME_STORAGE_KEY);
+            if (stored === 'light' || stored === 'dark') {
+                savedTheme = stored;
+            }
+        } catch (_) {
+            savedTheme = 'dark';
+        }
 
         function applyTheme(theme, notify = false) {
             rootEl.setAttribute('data-theme', theme);
@@ -164,34 +505,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
             }
 
-            if (themeToggleBtn) {
-                themeToggleBtn.setAttribute(
-                    'aria-label',
-                    theme === 'dark' ? 'Chuyển sang giao diện Sáng' : 'Chuyển sang giao diện Tối'
-                );
-                themeToggleBtn.setAttribute(
-                    'title',
-                    theme === 'dark' ? 'Chế độ Tối (Nhấn để chuyển sang Sáng)' : 'Chế độ Sáng (Nhấn để chuyển sang Tối)'
-                );
-            }
-
             try {
-                localStorage.setItem('theme', theme);
+                localStorage.setItem(THEME_STORAGE_KEY, theme);
             } catch (_) {
-                // Bỏ qua nếu trình duyệt chặn localStorage ở chế độ ẩn danh nghiêm ngặt
+                // Ignore storage errors
             }
 
             if (notify) {
-                showToast(
-                    theme === 'dark'
-                        ? '🌙 Đã chuyển sang giao diện Tối (Dark Mode)'
-                        : '☀️ Đã chuyển sang giao diện Sáng (Light Mode)',
-                    2200
-                );
+                const msgPack = UI_MESSAGES[currentLang] || UI_MESSAGES.en;
+                showToast(theme === 'dark' ? msgPack.themeDark : msgPack.themeLight, 2000);
             }
         }
 
-        applyTheme(initialTheme, false);
+        applyTheme(savedTheme, false);
 
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
@@ -203,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * 4. NAVBAR SCROLL, MOBILE MENU & SCROLL SPY (#navbar, #mobile-menu-btn, #nav-menu, #back-to-top)
+     * 7. NAVBAR SCROLL, MOBILE MENU & SCROLL SPY
      * ======================================================================== */
     function initNavigationAndScroll() {
         const navbar = document.getElementById('navbar') || document.querySelector('.navbar');
@@ -229,14 +555,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
             });
 
-            // Đóng menu khi click vào bất kỳ .nav-link nào
             navLinks.forEach((link) => {
-                link.addEventListener('click', () => {
-                    closeMobileMenu();
-                });
+                link.addEventListener('click', closeMobileMenu);
             });
 
-            // Đóng menu khi click ra ngoài vùng navbar
             document.addEventListener('click', (e) => {
                 if (
                     navMenu.classList.contains('active') &&
@@ -247,7 +569,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Đóng menu khi nhấn phím Escape
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                     closeMobileMenu();
@@ -258,19 +579,16 @@ document.addEventListener('DOMContentLoaded', () => {
         function handleScroll() {
             const scrollY = window.scrollY || window.pageYOffset;
 
-            // 1. Navbar .scrolled khi cuộn > 40px
             if (navbar) {
                 navbar.classList.toggle('scrolled', scrollY > 40);
             }
 
-            // 2. Nút #back-to-top hiện khi cuộn xuống
             if (backToTopBtn) {
                 const showBackToTop = scrollY > 320;
                 backToTopBtn.classList.toggle('visible', showBackToTop);
                 backToTopBtn.classList.toggle('active', showBackToTop);
             }
 
-            // 3. Scroll Spy: Highlight .nav-link.active theo section hiện tại
             if (sections.length > 0 && navLinks.length > 0) {
                 let currentSectionId = '';
                 const scrollCheckPos = scrollY + 160;
@@ -283,16 +601,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Nếu ở gần đầu trang, chọn section đầu tiên (hero)
-                if (!currentSectionId && scrollY < 200 && sections[0]) {
-                    currentSectionId = sections[0].getAttribute('id') || '';
-                }
-
                 if (currentSectionId) {
                     navLinks.forEach((link) => {
                         const href = link.getAttribute('href') || '';
-                        const isActive = href === `#${currentSectionId}`;
-                        link.classList.toggle('active', isActive);
+                        link.classList.toggle('active', href === `#${currentSectionId}`);
                     });
                 }
             }
@@ -312,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * 5. SCROLL REVEAL & SKILL PROGRESS ANIMATION (.reveal, .skill-card, .skill-progress)
+     * 8. SCROLL REVEAL & SKILL PROGRESS ANIMATION
      * ======================================================================== */
     function animateSkillBarsIn(container = document) {
         const progressBars = container.querySelectorAll('.skill-progress');
@@ -329,18 +641,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function initScrollReveal() {
         const revealElements = document.querySelectorAll('.reveal');
         const skillCards = document.querySelectorAll('.skill-card');
-        const allProgressBars = document.querySelectorAll('.skill-progress');
 
         if (!('IntersectionObserver' in window)) {
             revealElements.forEach((el) => el.classList.add('active', 'visible'));
             animateSkillBarsIn(document);
             return;
         }
-
-        // Đặt chiều rộng ban đầu về 0% để hiệu ứng chạy mượt khi cuộn tới
-        allProgressBars.forEach((bar) => {
-            bar.style.width = '0%';
-        });
 
         const revealObserver = new IntersectionObserver(
             (entries, observer) => {
@@ -361,13 +667,12 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 threshold: 0.12,
-                rootMargin: '0px 0px -40px 0px'
+                rootMargin: '0px 0px -30px 0px'
             }
         );
 
         revealElements.forEach((el) => revealObserver.observe(el));
 
-        // Đảm bảo mọi .skill-card (kể cả khi không gắn .reveal) cũng animate thanh tiến độ khi xuất hiện
         const skillObserver = new IntersectionObserver(
             (entries, observer) => {
                 entries.forEach((entry) => {
@@ -386,420 +691,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * 6. SKILLS FILTER (.filter-btn, .skill-card)
+     * 9. COPY EMAIL & COPY PHONE HANDLER (#copy-email-btn, #copy-phone-btn, [data-copy])
      * ======================================================================== */
-    function initSkillsFilter() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const skillCards = document.querySelectorAll('.skill-card');
-
-        if (filterBtns.length === 0 || skillCards.length === 0) return;
-
-        filterBtns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const selectedFilter = (btn.getAttribute('data-filter') || 'all').trim().toLowerCase();
-
-                filterBtns.forEach((b) => {
-                    const isActive = b === btn;
-                    b.classList.toggle('active', isActive);
-                    b.setAttribute('aria-selected', String(isActive));
-                });
-
-                skillCards.forEach((card) => {
-                    const cardCategory = (
-                        card.getAttribute('data-category') ||
-                        card.getAttribute('data-filter') ||
-                        ''
-                    )
-                        .trim()
-                        .toLowerCase();
-
-                    const categories = cardCategory.split(/\s+/);
-                    const shouldShow =
-                        selectedFilter === 'all' ||
-                        cardCategory === selectedFilter ||
-                        categories.includes(selectedFilter);
-
-                    if (shouldShow) {
-                        card.classList.remove('hidden');
-                        card.classList.add('active', 'visible');
-                        animateSkillBarsIn(card);
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            });
-        });
-    }
-
-    /* ========================================================================
-     * 7. INTERACTIVE MINI-APP: "NIHONGO NAKAMA" (#nakama-widget)
-     * ======================================================================== */
-    function initNakamaMiniApp() {
-        const widget = document.getElementById('nakama-widget');
-        if (!widget) return;
-
-        const flashcard = document.getElementById('nakama-flashcard');
-        const tabButtons = document.querySelectorAll('.nakama-tab');
-        const prevBtn = document.getElementById('nakama-prev-btn');
-        const nextBtn = document.getElementById('nakama-next-btn');
-        const flipBtn = document.getElementById('nakama-flip-btn');
-        const speakBtn = document.getElementById('nakama-speak-btn');
-        const tryNakamaBtn = document.getElementById('try-nakama-btn');
-
-        const counterEl = document.getElementById('nakama-counter');
-        const levelEl = document.getElementById('nakama-level');
-        const jpEl = document.getElementById('nakama-jp');
-        const romajiEl = document.getElementById('nakama-romaji');
-        const viEl = document.getElementById('nakama-vi');
-        const exampleEl = document.getElementById('nakama-example');
-
-        // Cơ sở dữ liệu 3 bộ thẻ tiếng Nhật của dự án Nihongo NAKAMA
-        const NAKAMA_DECKS = {
-            vocab: [
-                {
-                    level: 'JLPT N4 • Từ Vựng',
-                    jp: '仲間',
-                    romaji: 'なかま • nakama',
-                    vi: 'Bạn đồng hành / Đồng đội',
-                    example: 'Ví dụ: 私たちは最高の仲間です。(Chúng ta là những người bạn đồng hành tuyệt vời nhất.)',
-                    speakText: 'なかま'
-                },
-                {
-                    level: 'JLPT N3 • IT Vocab',
-                    jp: '開発者',
-                    romaji: 'かいはつしゃ • kaihatsusha',
-                    vi: 'Lập trình viên / Nhà phát triển',
-                    example: 'Ví dụ: Webとアプリの開発者を目指しています。(Tôi hướng tới trở thành nhà phát triển Web & App.)',
-                    speakText: 'かいはつしゃ'
-                },
-                {
-                    level: 'JLPT N5 • Từ Vựng',
-                    jp: '大学生',
-                    romaji: 'だいがくせい • daigakusei',
-                    vi: 'Sinh viên đại học',
-                    example: 'Ví dụ: HCMUITの1年生の大学生です。(Tôi là sinh viên năm nhất trường ĐH CNTT - HCMUIT.)',
-                    speakText: 'だいがくせい'
-                },
-                {
-                    level: 'JLPT N4 • Từ Vựng',
-                    jp: '未来',
-                    romaji: 'みらい • mirai',
-                    vi: 'Tương lai',
-                    example: 'Ví dụ: テクノロジーで新しい未来を創る。(Kiến tạo tương lai mới bằng công nghệ.)',
-                    speakText: 'みらい'
-                },
-                {
-                    level: 'JLPT N3 • Từ Vựng',
-                    jp: '挑戦',
-                    romaji: 'ちょうせん • chousen',
-                    vi: 'Thử thách / Chinh phục',
-                    example: 'Ví dụ: 新しい技術に毎日挑戦する。(Mỗi ngày đều chinh phục những công nghệ mới.)',
-                    speakText: 'ちょうせん'
-                },
-                {
-                    level: 'JLPT N3 • Từ Vựng',
-                    jp: '情熱',
-                    romaji: 'じょうねつ • jounetsu',
-                    vi: 'Nhiệt huyết / Đam mê',
-                    example: 'Ví dụ: プログラミングへの情熱を持ち続ける。(Luôn giữ vững ngọn lửa đam mê lập trình.)',
-                    speakText: 'じょうねつ'
-                }
-            ],
-            kana: [
-                {
-                    level: 'Kana • Hàng A (Nguyên âm)',
-                    jp: 'あ / ア',
-                    romaji: 'Phát âm: a (Hiragana: あ • Katakana: ア)',
-                    vi: 'Chữ A trong bảng chữ cái tiếng Nhật',
-                    example: 'Từ vựng mẫu: あい (Ai - Tình yêu) • アプリ (Apuri - Ứng dụng / App)',
-                    speakText: 'あ'
-                },
-                {
-                    level: 'Kana • Hàng KA',
-                    jp: 'か / カ',
-                    romaji: 'Phát âm: ka (Hiragana: か • Katakana: カ)',
-                    vi: 'Chữ KA trong bảng chữ cái tiếng Nhật',
-                    example: 'Từ vựng mẫu: かさ (Kasa - Chiếc ô) • カメラ (Kamera - Máy ảnh)',
-                    speakText: 'か'
-                },
-                {
-                    level: 'Kana • Hàng SA',
-                    jp: 'さ / サ',
-                    romaji: 'Phát âm: sa (Hiragana: さ • Katakana: サ)',
-                    vi: 'Chữ SA trong bảng chữ cái tiếng Nhật',
-                    example: 'Từ vựng mẫu: さくら (Sakura - Hoa anh đào) • サーバー (Saabaa - Máy chủ Server)',
-                    speakText: 'さ'
-                },
-                {
-                    level: 'Kana • Hàng TA',
-                    jp: 'た / タ',
-                    romaji: 'Phát âm: ta (Hiragana: た • Katakana: タ)',
-                    vi: 'Chữ TA trong bảng chữ cái tiếng Nhật',
-                    example: 'Từ vựng mẫu: たいよう (Taiyou - Mặt trời) • タブレット (Taburetto - Máy tính bảng)',
-                    speakText: 'た'
-                },
-                {
-                    level: 'Kana • Hàng NA',
-                    jp: 'な / ナ',
-                    romaji: 'Phát âm: na (Hiragana: な • Katakana: ナ)',
-                    vi: 'Chữ NA trong bảng chữ cái tiếng Nhật',
-                    example: 'Từ vựng mẫu: なかま (Nakama - Bạn đồng hành) • ナビ (Nabi - Điều hướng Navigation)',
-                    speakText: 'な'
-                },
-                {
-                    level: 'Kana • Hàng HA',
-                    jp: 'は / ハ',
-                    romaji: 'Phát âm: ha (Hiragana: は • Katakana: ハ)',
-                    vi: 'Chữ HA trong bảng chữ cái tiếng Nhật',
-                    example: 'Từ vựng mẫu: はな (Hana - Bông hoa) • ハードウェア (Haadowea - Phần cứng)',
-                    speakText: 'は'
-                }
-            ],
-            kanji: [
-                {
-                    level: 'Kanji N5 • Hán Tự Cốt Lõi',
-                    jp: '学',
-                    romaji: 'Âm đọc: がく (gaku) / まな.ぶ (manabu)',
-                    vi: 'Hán Việt: HỌC • Nghĩa: Học tập, tri thức',
-                    example: 'Ghép từ: 大学 (Daigaku - Đại học) • 学生 (Gakusei - Sinh viên) • 学ぶ (Manabu - Học hỏi)',
-                    speakText: 'まなぶ'
-                },
-                {
-                    level: 'Kanji N3 • Chuyên Ngành CNTT',
-                    jp: '情報',
-                    romaji: 'Âm đọc: じょうほう (jouhou)',
-                    vi: 'Hán Việt: TÌNH BÁO • Nghĩa: Thông tin, Tin học',
-                    example: 'Ghép từ: 情報技術 (Jouhou Gijutsu - Công nghệ thông tin / IT)',
-                    speakText: 'じょうほう'
-                },
-                {
-                    level: 'Kanji N5 • Hán Tự Cốt Lõi',
-                    jp: '語',
-                    romaji: 'Âm đọc: ご (go) / かた.る (kataru)',
-                    vi: 'Hán Việt: NGỮ • Nghĩa: Ngôn ngữ, lời nói',
-                    example: 'Ghép từ: 日本語 (Nihongo - Tiếng Nhật) • 単語 (Tango - Từ vựng)',
-                    speakText: 'にほんご'
-                },
-                {
-                    level: 'Kanji N5 • Hán Tự Cốt Lõi',
-                    jp: '友',
-                    romaji: 'Âm đọc: ゆう (yuu) / とも (tomo)',
-                    vi: 'Hán Việt: HỮU • Nghĩa: Bạn bè, bằng hữu',
-                    example: 'Ghép từ: 友達 (Tomodachi - Bạn bè) • 親友 (Shinyuu - Bạn thân)',
-                    speakText: 'ともだち'
-                },
-                {
-                    level: 'Kanji N5 • Hán Tự Cốt Lõi',
-                    jp: '道',
-                    romaji: 'Âm đọc: どう (dou) / みち (michi)',
-                    vi: 'Hán Việt: ĐẠO • Nghĩa: Con đường, đạo lý',
-                    example: 'Ghép từ: 自分の道を進む (Jibun no michi wo susumu - Tiến bước trên con đường của mình)',
-                    speakText: 'みち'
-                },
-                {
-                    level: 'Kanji N4 • Hán Tự Truyền Cảm Hứng',
-                    jp: '夢',
-                    romaji: 'Âm đọc: む (mu) / ゆめ (yume)',
-                    vi: 'Hán Việt: MỘNG • Nghĩa: Ước mơ, hoài bão',
-                    example: 'Ghép từ: 夢を実現する (Yume wo jitsugen suru - Hiện thực hóa ước mơ)',
-                    speakText: 'ゆめ'
-                }
-            ]
-        };
-
-        let currentDeckKey = 'vocab';
-        let currentCardIndex = 0;
-
-        function renderCard(resetFlip = true) {
-            const deck = NAKAMA_DECKS[currentDeckKey] || NAKAMA_DECKS.vocab;
-            const card = deck[currentCardIndex] || deck[0];
-
-            if (resetFlip && flashcard) {
-                flashcard.classList.remove('is-flipped');
-            }
-
-            const updateContent = () => {
-                if (counterEl) {
-                    counterEl.textContent = `${currentCardIndex + 1} / ${deck.length}`;
-                }
-                if (levelEl) {
-                    levelEl.textContent = card.level;
-                }
-                if (jpEl) {
-                    jpEl.textContent = card.jp;
-                }
-                if (romajiEl) {
-                    romajiEl.textContent = card.romaji;
-                }
-                if (viEl) {
-                    viEl.textContent = card.vi;
-                }
-                if (exampleEl) {
-                    exampleEl.textContent = card.example;
-                }
-            };
-
-            if (resetFlip && flashcard && flashcard.classList.contains('is-flipped')) {
-                setTimeout(updateContent, 150);
-            } else {
-                updateContent();
-            }
-        }
-
-        function toggleFlip() {
-            if (!flashcard) return;
-            flashcard.classList.toggle('is-flipped');
-        }
-
-        function goToPrevCard() {
-            const deck = NAKAMA_DECKS[currentDeckKey] || NAKAMA_DECKS.vocab;
-            currentCardIndex = (currentCardIndex - 1 + deck.length) % deck.length;
-            renderCard(true);
-        }
-
-        function goToNextCard() {
-            const deck = NAKAMA_DECKS[currentDeckKey] || NAKAMA_DECKS.vocab;
-            currentCardIndex = (currentCardIndex + 1) % deck.length;
-            renderCard(true);
-        }
-
-        function speakCurrentCard(e) {
-            if (e) {
-                e.stopPropagation();
-            }
-
-            const deck = NAKAMA_DECKS[currentDeckKey] || NAKAMA_DECKS.vocab;
-            const card = deck[currentCardIndex] || deck[0];
-            const textToSpeak = card.speakText || card.jp;
-
-            if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
-                showToast(`🔊 Phát âm mẫu: "${card.jp}" (${card.romaji})`);
-                return;
-            }
-
-            try {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(textToSpeak);
-                utterance.lang = 'ja-JP';
-                utterance.rate = 0.92;
-                utterance.pitch = 1.0;
-
-                const voices = window.speechSynthesis.getVoices();
-                const jpVoice = voices.find(
-                    (v) => v.lang && (v.lang.toLowerCase().startsWith('ja') || v.lang.includes('JP'))
-                );
-                if (jpVoice) {
-                    utterance.voice = jpVoice;
-                }
-
-                window.speechSynthesis.speak(utterance);
-                showToast(`🔊 Đang phát âm tiếng Nhật: "${card.jp}" (${card.romaji})`, 2400);
-            } catch (_) {
-                showToast(`🔊 Phát âm: "${card.jp}" — ${card.romaji}`, 2400);
-            }
-        }
-
-        // Sự kiện chuyển bộ thẻ (.nakama-tab)
-        tabButtons.forEach((tab) => {
-            tab.addEventListener('click', () => {
-                const deckName = tab.getAttribute('data-deck');
-                if (!deckName || !NAKAMA_DECKS[deckName]) return;
-
-                currentDeckKey = deckName;
-                currentCardIndex = 0;
-
-                tabButtons.forEach((t) => {
-                    const isActive = t === tab;
-                    t.classList.toggle('active', isActive);
-                    t.setAttribute('aria-selected', String(isActive));
-                });
-
-                renderCard(true);
-            });
-        });
-
-        // Sự kiện lật thẻ khi click vào #nakama-flashcard hoặc nhấn Space / Enter
-        if (flashcard) {
-            flashcard.addEventListener('click', (e) => {
-                if (e.target.closest('button')) return;
-                toggleFlip();
-            });
-
-            flashcard.addEventListener('keydown', (e) => {
-                if (e.key === ' ' || e.key === 'Enter') {
-                    e.preventDefault();
-                    toggleFlip();
-                } else if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    goToNextCard();
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    goToPrevCard();
-                }
-            });
-        }
-
-        if (flipBtn) {
-            flipBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleFlip();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', goToPrevCard);
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', goToNextCard);
-        }
-
-        if (speakBtn) {
-            speakBtn.addEventListener('click', speakCurrentCard);
-        }
-
-        // Nút #try-nakama-btn: cuộn mượt tới #nakama-widget, làm nổi bật và lật thẻ demo
-        if (tryNakamaBtn) {
-            tryNakamaBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                widget.classList.add('highlight-pulse');
-
-                showToast('🇯🇵 Chào mừng bạn trải nghiệm Mini Flashcard của Nihongo NAKAMA!', 3000);
-
-                setTimeout(() => {
-                    if (flashcard) {
-                        flashcard.classList.toggle('is-flipped');
-                        flashcard.focus({ preventScroll: true });
-                    }
-                }, 550);
-
-                setTimeout(() => {
-                    widget.classList.remove('highlight-pulse');
-                }, 1800);
-            });
-        }
-
-        // Khởi tạo thẻ đầu tiên
-        renderCard(false);
-    }
-
-    /* ========================================================================
-     * 8. COPY EMAIL (#copy-email-btn, #hero-copy-email) & CLIPBOARD HANDLER
-     * ======================================================================== */
-    function initCopyEmail() {
-        const copyButtons = [
-            document.getElementById('copy-email-btn'),
-            document.getElementById('hero-copy-email')
-        ].filter(Boolean);
-
+    function initCopyHandlers() {
         async function copyTextToClipboard(text) {
             if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(text);
                 return true;
             }
 
-            // Fallback cho môi trường không có Clipboard API
             const textArea = document.createElement('textarea');
             textArea.value = text;
             textArea.style.position = 'fixed';
@@ -813,23 +713,46 @@ document.addEventListener('DOMContentLoaded', () => {
             return ok;
         }
 
-        copyButtons.forEach((btn) => {
+        const copyElements = document.querySelectorAll(
+            '#copy-email-btn, #copy-phone-btn, #hero-copy-email, [data-copy], [data-email], [data-phone]'
+        );
+
+        copyElements.forEach((btn) => {
             btn.addEventListener('click', async (e) => {
                 e.preventDefault();
-                const emailToCopy = btn.getAttribute('data-email') || EMAIL_ADDRESS;
+
+                const id = btn.id || '';
+                const rawCopyValue =
+                    btn.getAttribute('data-copy') ||
+                    btn.getAttribute('data-email') ||
+                    btn.getAttribute('data-phone') ||
+                    (id.includes('phone') ? PHONE_NUMBER : EMAIL_ADDRESS);
+
+                const isPhone =
+                    id.includes('phone') ||
+                    btn.hasAttribute('data-phone') ||
+                    rawCopyValue.replace(/\s+/g, '') === PHONE_NUMBER;
+
+                const msgPack = UI_MESSAGES[currentLang] || UI_MESSAGES.en;
 
                 try {
-                    await copyTextToClipboard(emailToCopy);
-                    showToast(`📋 Đã sao chép email: ${emailToCopy}`);
+                    await copyTextToClipboard(rawCopyValue);
+                    if (isPhone) {
+                        showToast(msgPack.copiedPhone);
+                    } else if (rawCopyValue === EMAIL_ADDRESS) {
+                        showToast(msgPack.copiedEmail);
+                    } else {
+                        showToast(msgPack.copiedGeneric(rawCopyValue));
+                    }
                 } catch (_) {
-                    showToast(`📧 Email của Trần Đức: ${emailToCopy}`);
+                    showToast(isPhone ? msgPack.copiedPhone : msgPack.copiedEmail);
                 }
             });
         });
     }
 
     /* ========================================================================
-     * 9. CONTACT FORM HANDLER (#contact-form)
+     * 10. CONTACT FORM HANDLER (#contact-form)
      * ======================================================================== */
     function initContactForm() {
         const contactForm = document.getElementById('contact-form');
@@ -840,50 +763,58 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const nameInput = document.getElementById('sender-name');
-            const emailInput = document.getElementById('sender-email');
-            const subjectInput = document.getElementById('sender-subject');
-            const messageInput = document.getElementById('sender-message');
+            const nameInput =
+                document.getElementById('sender-name') ||
+                contactForm.querySelector('input[name="name"]');
+            const emailInput =
+                document.getElementById('sender-email') ||
+                contactForm.querySelector('input[name="email"]');
+            const subjectInput =
+                document.getElementById('sender-subject') ||
+                contactForm.querySelector('input[name="subject"]');
+            const messageInput =
+                document.getElementById('sender-message') ||
+                contactForm.querySelector('textarea[name="message"]');
 
             const senderName = nameInput ? nameInput.value.trim() : '';
             const senderEmail = emailInput ? emailInput.value.trim() : '';
             const senderSubject = subjectInput ? subjectInput.value.trim() : '';
             const senderMessage = messageInput ? messageInput.value.trim() : '';
 
+            const msgPack = UI_MESSAGES[currentLang] || UI_MESSAGES.en;
+
             if (!senderName || !senderEmail || !senderMessage) {
                 if (formStatus) {
-                    formStatus.textContent = '⚠️ Vui lòng điền đầy đủ Họ tên, Email và Nội dung tin nhắn.';
+                    formStatus.textContent = msgPack.formMissing;
                     formStatus.className = 'form-status error visible';
                 }
-                showToast('⚠️ Vui lòng điền đầy đủ thông tin bắt buộc!');
+                showToast(msgPack.formMissing);
                 return;
             }
 
             const finalSubject = senderSubject
-                ? `[Portfolio Trần Đức] ${senderSubject}`
-                : `[Portfolio Trần Đức] Liên hệ từ ${senderName}`;
+                ? `[Portfolio Tran Duc] ${senderSubject}`
+                : `[Portfolio Tran Duc] Contact from ${senderName}`;
 
             const finalBody = [
-                `Xin chào Trần Đức,`,
+                `Hello Tran Duc,`,
                 ``,
-                `Mình là: ${senderName}`,
-                `Email liên hệ: ${senderEmail}`,
-                `Tiêu đề: ${senderSubject || 'Trao đổi hợp tác / Dự án'}`,
+                `Name: ${senderName}`,
+                `Email: ${senderEmail}`,
                 ``,
-                `Nội dung tin nhắn:`,
+                `Message:`,
                 `${senderMessage}`,
                 ``,
                 `---`,
-                `Gửi từ Portfolio Trần Đức (https://dustintran.me)`
+                `Sent via Portfolio (https://dustintran.me)`
             ].join('\r\n');
 
             if (formStatus) {
-                formStatus.textContent =
-                    '✅ Cảm ơn bạn đã nhắn tin! Đang mở ứng dụng Email để gửi trực tiếp tới tranduc6525@gmail.com...';
+                formStatus.textContent = msgPack.formSending;
                 formStatus.className = 'form-status success visible';
             }
 
-            showToast('✉️ Đang mở trình gửi mail tới tranduc6525@gmail.com!');
+            showToast(msgPack.formSending);
 
             const mailtoUrl = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
                 finalSubject
@@ -897,15 +828,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * KHỞI CHẠY TẤT CẢ MODULE
+     * INITIALIZE ALL MODULES
      * ======================================================================== */
+    initLanguageSystem();
     initTypewriter();
-    initDynamicAge();
     initThemeToggle();
     initNavigationAndScroll();
     initScrollReveal();
-    initSkillsFilter();
-    initNakamaMiniApp();
-    initCopyEmail();
+    initCopyHandlers();
     initContactForm();
 });
